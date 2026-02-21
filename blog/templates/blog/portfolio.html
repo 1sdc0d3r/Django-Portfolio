@@ -1,0 +1,23 @@
+{% extends 'blog/base.html' %} {% block body %}
+<div class="container py-4">
+  <h1 class="mb-4">Portfolio</h1>
+  <ul class="list-group">
+    {% for item in portfolios %}
+    <li class="list-group-item list-group-item-action">
+      <div class="d-flex align-items-center gap-3">
+        {% if item.image %}
+        <img src="{{ item.image }}" alt="{{ item.name }}" width="120" height="120" class="object-fit-cover rounded" />
+        {% endif %}
+        <div class="flex-grow-1">
+          <h5 class="mb-1">{{ item.name }}</h5>
+          <p class="mb-0 text-muted small">{{ item.description|truncatewords:15 }}</p>
+        </div>
+        <a href="{% url 'portfolio_detail' item.id %}" class="btn btn-primary">View</a>
+      </div>
+    </li>
+    {% empty %}
+    <li class="list-group-item">No portfolio items yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

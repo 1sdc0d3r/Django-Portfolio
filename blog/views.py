@@ -9,13 +9,27 @@ def home(req):
     return render(req, 'blog/home.html')
 
 def hobbies(req):
-    hobby_list=Hobbies.objects.all()
-    # print(hobby_list)
-    return HttpResponse(hobby_list)
-    # return HttpResponse(f"<h1>hobbies</h1>\n{hobby_list}")
+    hobby_list = Hobbies.objects.all()
+    context = {'hobbies': hobby_list}
+    return render(req, 'blog/hobbies.html', context)
+
+
+def hobby_detail(req, id):
+    item = Hobbies.objects.get(pk=id)
+    context = {'hobby': item}
+    return render(req, 'blog/hobby_detail.html', context)
+
 
 def portfolio(req):
-    return HttpResponse(Portfolio.objects.all())
+    portfolio_list = Portfolio.objects.all()
+    context = {'portfolios': portfolio_list}
+    return render(req, 'blog/portfolio.html', context)
+
+
+def portfolio_detail(req, id):
+    item = Portfolio.objects.get(pk=id)
+    context = {'portfolio': item}
+    return render(req, 'blog/portfolio_detail.html', context)
 
 def contact(req):
     return render(req, 'blog/contact.html')
