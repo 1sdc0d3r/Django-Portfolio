@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %} {% block body %}
+{% extends 'blog/base.html' %} {% block body %}{% load static %}
 <div class="container py-4">
   <h1 class="mb-4">Portfolio</h1>
   <ul class="list-group">
@@ -6,7 +6,7 @@
     <li class="list-group-item list-group-item-action">
       <div class="d-flex align-items-center gap-3">
         <img
-          src="{{ item.image }}"
+          src="{% static 'blog/broom.jpg' %}"
           alt="{{ item.name }}"
           width="120"
           height="120"
